@@ -1,0 +1,10 @@
+{
+  "extends": "ts-node/node14/tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src"
+  },
+  "ts-node": {
+    "transpileOnly": true,
+    "files": true
+  }
+}

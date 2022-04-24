@@ -1,0 +1,29 @@
+{
+  "name": "bible-markdown",
+  "version": "1.0.0",
+  "description": "Converts epub version of german bible translation 'BasisBibel - Die Kompakte' to markdown.",
+  "author": "Samuel Mergenthaler",
+  "license": "ISC",
+  "scripts": {
+    "start": "ts-node src/main.ts"
+  },
+  "dependencies": {
+    "@gxl/epub-parser": "^2.0.4",
+    "node-html-parser": "^5.3.3",
+    "prettier": "^2.6.2",
+    "ts-node": "^10.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.24",
+    "@types/prettier": "^2.6.0",
+    "typescript": "^4.6.3"
+  },
+  "prettier": {
+    "printWidth": 300,
+    "quoteProps": "as-needed",
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "trailingComma": "es5"
+  }
+}
