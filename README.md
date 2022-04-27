@@ -17,7 +17,7 @@ Wait for the script to finish, it can take a minute. Following output will be pr
 
 `./BasisBibel/Bibel`:  
 Each book has its own folder, named e.g. "01 - 1. Mose 1".  
-Each book has an entry file, e.g. "1. Mose.md". It links to the first chapter of the book.  
+Each book has an entry file, e.g. "Buch 1. Mose.md". It links to the first chapter of the book.  
 Each chapter has its own file, e.g. "1. Mose 1.md".  
 
 `./BasisBibel/Randbemerkungen`:  

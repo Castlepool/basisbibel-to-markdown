@@ -12,11 +12,17 @@ parseEpub(path.normalize('input/BasisBibel.epub'), { type: 'path' }).then(async 
     const bookOverviewNotesPromises = biblicalBookTitleMapping.map(async (book) => {
         let bookNoteString = `# ${book.newTitle}`
         bookNoteString += `\n\n[[${book.newTitle} 1|Lesen →]]`
-        bookNoteString += '\n\n---\nlinks: [[Bibel]]'
+        bookNoteString += '\n\n---\nlinks: [[BasisBibel - Inhalt]]'
         bookNoteString = prettier.format(bookNoteString, { parser: 'markdown' })
         const bookNumberedFolderName = `${String(getBiblicalBookNumberByTitle(book.newTitle)).padStart(2, '0')} - ${book.newTitle}`
-        await writeFile(`BasisBibel/Bibel/${bookNumberedFolderName}/${book.newTitle}.md`, bookNoteString)
+        await writeFile(`BasisBibel/Bibel/${bookNumberedFolderName}/Buch ${book.newTitle}.md`, bookNoteString)
     })
+    
+    let basisBibelTableOfContentString = '# Basisbibel - Inhalt\n'
+    biblicalBookTitleMapping.forEach((book) => {
+            basisBibelTableOfContentString += `\n- [[Buch ${book.newTitle}]]`
+        })
+    await writeFile(`BasisBibel/BasisBibel - Inhalt.md`, basisBibelTableOfContentString)
 
     const allBibleSectionsInEpub = epubBible.sections?.slice(5, 348).map((section) => parse(section.htmlString))
     const allBibleCommentsInEpub = epubBible.sections?.slice(356, 699).map((section) => parse(section.htmlString))
@@ -48,7 +54,7 @@ parseEpub(path.normalize('input/BasisBibel.epub'), { type: 'path' }).then(async 
             if (chapterNumber > 1) {
                 chapterString += `[[${bookTitle} ${chapterNumber - 1}]] | `
             }
-            chapterString += `[[${bookTitle}]]`
+            chapterString += `[[Buch ${bookTitle}]]`
             if (bookTitle === bookTitleOfNextChapter) {
                 chapterString += ` | [[${bookTitle} ${chapterNumber + 1}]]`
             }
