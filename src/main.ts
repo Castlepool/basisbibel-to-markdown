@@ -129,7 +129,7 @@ parseEpub(path.normalize('input/BasisBibel.epub'), { type: 'path' }).then(async 
             if (!commentVerseLink) throw `Couldn't find a comment verse link!`
             const chapterNumber = commentVerseLink.match(/← ([0-9]+)/)?.[1]
             const verseNumber = commentVerseLink.match(/← [0-9]+,([0-9]+)/)?.[1]
-            const commentMarkdownVerseLink = `[[${bookTitle} ${chapterNumber}${verseNumber ? `#${verseNumber}` : ''}|${commentVerseLink}]]`
+            const commentMarkdownVerseLink = `[[${bookTitle} ${chapterNumber}${verseNumber ? `#${verseNumber}` : ''}]]`
 
             const commentTitle = commentHtml.querySelector('.fq')?.text.trim().replace(/:$/, '')
             const commentText = commentHtml
@@ -149,7 +149,7 @@ parseEpub(path.normalize('input/BasisBibel.epub'), { type: 'path' }).then(async 
             const bookNumberedFolderName = `${String(getBiblicalBookNumberByTitle(bookTitle)).padStart(2, '0')} - ${bookTitle}`
             const chapterTitle = `${bookTitle} ${chapterNumber}`
             const commentTargetFilePath = `BasisBibel/Randbemerkungen/${bookNumberedFolderName}/${chapterTitle} - Randbemerkungen.md`
-            const commentFullText = `## ${commentTitle} (${commentMarkdownVerseLink})\n\n${commentText}`
+            const commentFullText = `## ${commentTitle}\n\n${commentMarkdownVerseLink}\n\n${commentText}`
             const commentFormattedText = prettier.format(commentFullText, { parser: 'markdown' })
             return {
                 targetFilePath: commentTargetFilePath,
